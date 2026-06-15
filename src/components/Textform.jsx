@@ -1,13 +1,21 @@
 import React,{useState}from 'react'
+import propTypes from 'prop-types'
 
 export default function Textform(props) {
 
   const handleUpClick = () => {
     setText(text.toUpperCase());
+    props.showAlert("Converted to uppercase!", "success");
   }
 
   const handleLoClick = () => {
     setText(text.toLowerCase());
+    props.showAlert("Converted to lowercase!", "success");
+  }
+
+  const clearText = () => {
+    setText("");
+    props.showAlert("Text cleared!", "danger");
   }
 
   const handleOnChange = (e) => {
@@ -17,6 +25,7 @@ export default function Textform(props) {
   const handleextraspace = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert("Extra spaces removed!", "success");
   }
   const [text, setText] = useState("enter text here");
 
@@ -29,7 +38,7 @@ export default function Textform(props) {
           </div>
           <button className="btn btn-dark" onClick={handleUpClick}>Convert to Uppercase</button>
           <button className="btn btn-dark mx-2 " onClick={handleLoClick}>Convert to Lowercase</button>
-          <button className="btn btn-secondary my-2" onClick={() => { setText(""); }}>Clear Text</button>
+          <button className="btn btn-secondary my-2" onClick={clearText}>Clear Text</button>
           <button className="btn btn-secondary mx-2" onClick={handleextraspace}>Remove extra spaces</button>
         </div>
 
