@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Textform from './components/Textform'
 import About from './components/About'
 import Alert from './components/Alert'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 let name = "Renuka";
 function App() {
@@ -41,12 +42,16 @@ function App() {
   return (
     
    <>
+    <BrowserRouter>
       <Navbar mode={mode}  togglemode={toggleMode} />
       <Alert alert={alert} />
-      <div className="container my-4">
-         <Textform  showAlert={showAlert} heading="Enter text here to analyze"/> 
-       {/* <About/> */}
-      </div>
+    
+       <Routes>
+        <Route path="/" element={<Textform  showAlert={showAlert} heading="Enter text here to analyze"/>} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+      
+    </BrowserRouter>
       
    </>
     
